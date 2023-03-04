@@ -16,6 +16,7 @@ import { JokesModule } from './jokes/jokes.module';
       database: 'zenstest',
       entities: [join(__dirname, '**', '*.entities.{js,ts}')],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     JokesModule,
   ],

@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Joke } from 'src/entities/joke.entity';
+import { Repository } from 'typeorm';
 import { CreateJokeDto } from './dto/create-joke.dto';
 import { UpdateJokeDto } from './dto/update-joke.dto';
 
 @Injectable()
 export class JokesService {
+  constructor(
+    @InjectRepository(Joke) private jokeRepository: Repository<Joke>,
+  ) {}
   create(createJokeDto: CreateJokeDto) {
-    return 'This action adds a new joke';
+    return this.jokeRepository.save(createJokeDto);
   }
 
   findAll() {
-    return `This action returns all jokes`;
+    return this.jokeRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} joke`;
+    return this.jokeRepository.findOneBy({ id });
   }
 
-  update(id: number, updateJokeDto: UpdateJokeDto) {
-    return `This action updates a #${id} joke`;
+  async update(id: number, updateJokeDto: UpdateJokeDto) {
+    return await this.jokeRepository.update({ id }, { ...updateJokeDto });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} joke`;
+  async remove(id: number) {
+    return await this.jokeRepository.delete({ id });
   }
 }
