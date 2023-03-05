@@ -30,10 +30,10 @@ export class Joke {
   @Column({ type: 'text', nullable: false })
   content: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'integer', nullable: true, default: 0 })
   liked: number;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: 'integer', nullable: true, default: 0 })
   disliked: number;
 
   @Column({ type: 'text', nullable: true })
