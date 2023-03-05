@@ -38,6 +38,6 @@ integers:
 4: If we sum everything except 4, our sum is: 1 + 2 + 3 + 5 = 11
 5: If we sum everything except 5, our sum is: 1 + 2 + 3 + 4 = 10
 '''
-### Resolve
-`ar = list(map(int, input().rstrip().split()))
-print(sum(ar)-max(ar), sum(ar)-min(ar))`
+### Resolve with python
+`ar = list(map(int, input().rstrip().split()))`
+`print(sum(ar)-max(ar), sum(ar)-min(ar))`
