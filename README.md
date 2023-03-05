@@ -40,4 +40,5 @@ integers:
 '''
 ### Resolve with python
 `ar = list(map(int, input().rstrip().split()))`
+
 `print(sum(ar)-max(ar), sum(ar)-min(ar))`
