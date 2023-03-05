@@ -15,7 +15,9 @@ import { CreateJokeDto } from './dto/create-joke.dto';
 import { UpdateJokeDto } from './dto/update-joke.dto';
 import { Request, response } from 'express';
 import { VoteJokeDto } from './dto/vote-joke.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Joker')
 @Controller('jokes')
 export class JokesController {
   constructor(private readonly jokesService: JokesService) {}
