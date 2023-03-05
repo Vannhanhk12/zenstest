@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-// import { Session } from 'express-session';
-import { Joke } from 'src/entities/joke.entity';
+import { Joke } from '../entities/joke.entity';
 import { Repository } from 'typeorm';
 import { CreateJokeDto } from './dto/create-joke.dto';
 import { UpdateJokeDto } from './dto/update-joke.dto';
@@ -44,10 +43,12 @@ export class JokesService {
       const countLike = (await this.jokeRepository.findOneBy({ id })).liked + 1;
       await this.jokeRepository.update({ id }, { liked: countLike });
       return await this.getRandomJoke(session);
+    } else {
+      const countUnlike =
+        (await this.jokeRepository.findOneBy({ id })).liked - 1;
+      await this.jokeRepository.update({ id }, { disliked: countUnlike });
+      return this.getRandomJoke(session);
     }
-    const countUnlike = (await this.jokeRepository.findOneBy({ id })).liked - 1;
-    await this.jokeRepository.update({ id }, { disliked: countUnlike });
-    return this.getRandomJoke(session);
   }
 
   async update(id: number, updateJokeDto: UpdateJokeDto) {
@@ -55,6 +56,7 @@ export class JokesService {
   }
 
   async remove(id: number) {
-    return await this.jokeRepository.delete({ id });
+    await this.jokeRepository.delete({ id });
+    return id;
   }
 }

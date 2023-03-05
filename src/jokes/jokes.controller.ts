@@ -25,11 +25,6 @@ export class JokesController {
     return this.jokesService.create(createJokeDto);
   }
 
-  // @Get('all')
-  // findAll() {
-  //   return this.jokesService.findAll();
-  // }
-
   @Get()
   async findOne(
     @Param('id') id: string,
