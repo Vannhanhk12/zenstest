@@ -1,0 +1,33 @@
+# Need to install REST Client in visual studio code to run this file
+
+### Get a joke
+GET http://localhost:3000/jokes HTTP/1.1
+content-type: application/json
+
+### Create a Joke
+POST http://localhost:3000/jokes HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Two",
+    "content": "test 2"
+}
+
+### vote for the joke
+POST http://localhost:3000/jokes HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "like": true
+}
+
+### update the joke
+PATCH http://localhost:3000/jokes/1 HTTP/1.1
+
+{
+  "title": "Title 1",
+  "content": "Content 1"
+}
+
+DELETE http://localhost:3000/jokes/1 HTTP/1.1
